@@ -9,7 +9,7 @@ import { EXAMPLES } from "./data.js";
 
 
 function App() {
-  const [show, useshow] = useState('components')
+  const [show, useshow] = useState();
 
   function handleClick(btnno) {
     useshow(btnno);
@@ -20,36 +20,31 @@ function App() {
   return (
     <>
       <Header />
-     
+
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept {...CORE_CONCEPTS[0]}      
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image}
-              /> 
-          
-            <CoreConcept {...CORE_CONCEPTS[1]} />
-            <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+           { CORE_CONCEPTS.map((item) => <CoreConcept key={item.title} {...item} />) }
           </ul>
         </section>
 
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton handleClick={()=>handleClick('components') }>Component</TabButton>
-            <TabButton handleClick={()=>handleClick('jsx') }>Jsx</TabButton>
-            <TabButton handleClick={()=>handleClick('props') }>Props</TabButton>
-            <TabButton handleClick={()=>handleClick('state') }>State</TabButton>
+            <TabButton isSelected={show === 'components'} handleClick={() => handleClick('components')}>Component</TabButton>
+            <TabButton isSelected={show === 'jsx'} handleClick={() => handleClick('jsx')}>Jsx</TabButton>
+            <TabButton isSelected={show === 'props'} handleClick={() => handleClick('props')}>Props</TabButton>
+            <TabButton isSelected={show === 'state'} handleClick={() => handleClick('state')}>State</TabButton>
           </menu>
-        <div id="tab-content">
-          <h3>{EXAMPLES[show].title}</h3>
-          <p>{EXAMPLES[show].description}</p>
-          <pre>{EXAMPLES[show].code}</pre>
-        </div>
+          {!show && <p>Please selecte the topic.</p>}
+          {show &&
+            <div id="tab-content">
+              <h3>{EXAMPLES[show].title}</h3>
+              <p>{EXAMPLES[show].description}</p>
+              <pre>{EXAMPLES[show].code}</pre>
+            </div>
+          }
         </section>
       </main>
 

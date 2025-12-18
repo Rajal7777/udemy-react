@@ -1,3 +1,8 @@
+     
+ Rendering LIST IN Jsx
+
+ {### RENDERING MANUALLY ###}    
+1)METHOD 1
       <ul>
             <CoreConcept
               title={CORE_CONCEPTS[0].title}
@@ -22,3 +27,20 @@
               image={CORE_CONCEPTS[1].image}
             />
           </ul>
+
+
+{### RENDERING DYANAMICALLY ###}
+2)METHOD 2
+
+ { CORE_CONCEPTS.map((item) => <CoreConcept key={item.title} {...item} />) }
+
+ //just to check you can store the data from the parameter to the object and console item
+    {CORE_CONCEPTS.map((item) => {
+                const data = item;
+                console.log('logged from core concepts', data);
+                return(
+                <CoreConcept key={item.title} {...item} />
+                ); }
+              )
+            }
+            //you will get  all the obj stored in the array CORE_CONCEPTS
