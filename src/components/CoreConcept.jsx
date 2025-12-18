@@ -1,6 +1,6 @@
-import {CORE_CONCEPTS} from '../data.js';
 
-export default function Header({ title, description, image }) {
+
+export default function CoreConcept({ title, description, image }) {
   return (
     <li>
       <img src={image} alt={title} />

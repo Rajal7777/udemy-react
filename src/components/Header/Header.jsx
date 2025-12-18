@@ -1,4 +1,5 @@
-import reactImg from '../assets/config.png';
+import reactImg from '../../assets/config.png';
+import './header.css';
 
 const reactDescription = ['Fundamental', 'Crucial', 'Core'];
 
@@ -6,7 +7,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 
- export default function Head () {
+ export default function Header() {
     const description = reactDescription[getRandomInt(3)];
 
     return (
